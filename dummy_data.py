@@ -27,11 +27,11 @@ def seed_product(n):
     flags = ['N','V','P']
     tagss = ['test1','test2','test3','test4','test']
     for x in range(n):
-        liste = []
-        Product.objects.filter(id=x+1) 
-        tags = tagss[random.randint(0,4)]
-        
-        
+        Product.objects.filter(id=x+1).update(
+            flag = flags[random.randint(0,2)]
+        )
+        print(Product.nom)
+        print(x)
     print(f'{n} Products Seeded')
     
 def seed_product_images(n):
@@ -60,7 +60,7 @@ def seed_product_reviews(n):
       
     print(f'{n} Products Images Seeded')
 #seed_Brand(120)
-#seed_product(5010)
+seed_product(5010)
 #seed_product_images(10000)
-seed_product_reviews(5009)
+#seed_product_reviews(5009)
 
