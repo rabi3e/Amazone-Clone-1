@@ -25,4 +25,7 @@ def add_review (request,slug):
     
     return redirect(f'/products/{product.slug}')
     
- 
+class BrandList(ListView):
+    model = Brand
+
+

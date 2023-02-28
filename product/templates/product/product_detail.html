@@ -14,11 +14,11 @@
         =======================================-->
         <section class="single-banner inner-section" style="background: url(images/single-banner.jpg) no-repeat center;">
             <div class="container">
-                <h2>product simple</h2>
+                <h2>{{object}}</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="shop-4column.html">shop-4column</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">product-simple</li>
+                    <li class="breadcrumb-item"><a href="{% url 'products:product_list' %}">Product LIST</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{object}}</li>
                 </ol>
             </div>
         </section>
@@ -144,21 +144,12 @@
                                             </h5>
                                         </div>
                                         <ul class="review-rating">
-                                            {% if rev.review == 1 %}
-                                                <li class="icofont-ui-rating"></li>
-                                                <li class="icofont-ui-rate-blank"></li>
-                                                <li class="icofont-ui-rate-blank"></li>
-                                                <li class="icofont-ui-rate-blank"></li>
-                                                <li class="icofont-ui-rate-blank"></li>
-                                                {% if rev.review ==2 %}
-                                                  
-                                                {% endif %}                                              
-                                            {% endif %}
-                                            <li class="icofont-ui-rating"></li>
-                                            <li class="icofont-ui-rating"></li>
-                                            <li class="icofont-ui-rating"></li>
-                                            <li class="icofont-ui-rating"></li>
                                             
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rating"></li>
+                                            <li class="icofont-ui-rate-blank"></li>
                                         </ul>
                                         <p class="review-desc">{{rev.review}} </p>
                                     </li>
