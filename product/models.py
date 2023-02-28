@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
+from django.utils.text import slugify
 
 '''
 Product Models
@@ -27,6 +28,11 @@ class Product(models.Model):
     brand =  models.ForeignKey("Brand", verbose_name=_("Brand"),related_name='productbrand', on_delete=models.SET_NULL, null=True,blank=True)
     tags= TaggableManager()
 
+    def save(self, *args, **kwargs):
+       self.slug = slugify(self.nom)
+       super(Product, self).save(*args, **kwargs) # Call the real save() method
+       
+
     class Meta:
         verbose_name = 'Produit'
         verbose_name_plural = 'Produits'
@@ -35,9 +41,13 @@ class Product(models.Model):
         return self.nom
     
 class Brand(models.Model):
-    non = models.CharField(_("Nom"),max_length=50)
-    image =  models.ImageField(_("Image"), upload_to='brands')
+    nom = models.CharField(_("Nom"),max_length=50)
+    image =  models.ImageField(_("Image"), upload_to='brand')
     slug = models.SlugField(_("Slug"))
+
+    def save(self, *args, **kwargs):
+       self.slug = slugify(self.nom)
+       super(Brand, self).save(*args, **kwargs) # Call the real save() method
 
     class Meta:
         verbose_name = 'Brand'
@@ -61,7 +71,7 @@ class ProductImages(models.Model):
 class ProductReview(models.Model):
     user= models.ForeignKey(User, verbose_name=_("User"), related_name='reviewuser', on_delete=models.SET_NULL, null=True,blank=True)
     product = models.ForeignKey(Product, verbose_name=_("Product"), related_name='productreview', on_delete=models.CASCADE)
-    rate =models.IntegerField(_("Rate"), max_length=1)
+    rate =models.IntegerField(_("Rate"))
     review = models.TextField(_("Review"), max_length=1000)
     date = models.DateTimeField(_("Date"), auto_now=True)
     
