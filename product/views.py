@@ -5,8 +5,8 @@ from .forms import ProductReviewForm
 
 class ProductList(ListView):
     model = Product
-    
     paginate_by = 50
+    extra_context = {'all_prod': Product.objects.all().count()}
   
 
 class ProductDetail(DetailView):
