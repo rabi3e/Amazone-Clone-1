@@ -60,7 +60,7 @@
                             <div class="brand-media">
                                 <img src="{{brand.image.url}}" alt="brand">
                                 <div class="brand-overlay">
-                                    <a href="brand-single.html"><i class="fas fa-link"></i></a>
+                                    <a href="{% url 'products:brand_detail' brand.slug %}"><i class="fas fa-link"></i></a>
                                 </div>
                             </div>
                             <div class="brand-meta">
@@ -80,26 +80,27 @@
                             <p class="page-info">Showing 20 of {{all_brand}} Results</p>
                             <ul class="pagination">
                                 {% if page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">
-                                        <i class="fas fa-long-arrow-alt-left"></i>
-                                    </a>
-                                </li>  
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{page_obj.previous_page_number}}">
+                                            <i class="fas fa-long-arrow-alt-left"></i>
+                                        </a>
+                                    </li>  
                                 {% endif %}
                              
                                 <li class="page-item"><a class="page-link active" href="?page={{ page_obj.number }}">{{page_obj.number}}</a></li>
                                 {% if page_obj.next_page_number < page_obj.paginator.num_pages %}
-                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li>  
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{page_obj.next_page_number}}</a></li>  
                                 {% endif %}
                             
-                                <li class="page-item">...</li>
-                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{page_obj.paginator.num_pages}}</a></li>
+                                
                                 {% if page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{page_obj.next_page_number}}">
-                                        <i class="fas fa-long-arrow-alt-right"></i>
-                                    </a>
-                                </li>  
+                                    <li class="page-item">...</li>
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{page_obj.paginator.num_pages}}</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{page_obj.next_page_number}}">
+                                            <i class="fas fa-long-arrow-alt-right"></i>
+                                        </a>
+                                    </li>  
                                 {% endif %}
                             </ul>
                         </div>
