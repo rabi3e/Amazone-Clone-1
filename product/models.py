@@ -40,6 +40,18 @@ class Product(models.Model):
     def __str__(self):
         return self.nom
     
+    def avg_rate(self):
+        product_rev = self.productreview.all()
+        l= len(product_rev)
+        if l > 0 :
+            rev_sum = 0
+            for rate in product_rev :
+                rev_sum += rate.rate
+            return rev_sum / l
+        else :
+            return 0
+        
+    
 class Brand(models.Model):
     nom = models.CharField(_("Nom"),max_length=50)
     image =  models.ImageField(_("Image"), upload_to='brand')
