@@ -15,7 +15,7 @@ class ProductDetail(DetailView):
     def get_context_data(self, **kwargs):
         product = self.get_object()
         context = super().get_context_data(**kwargs)
-        context["related_product"] = Product.objects.filter(brand=product.brand ) 
+        context["related_product"] = Product.objects.filter(brand=product.brand )[:10] #pour limiter le nombre des produits cible a 10
         return context
     
     
@@ -34,5 +34,8 @@ def add_review (request,slug):
     
 class BrandList(ListView):
     model = Brand
+    paginate_by = 20
+    extra_context = {'all_brand': Brand.objects.all().count()}
+  
 
 
