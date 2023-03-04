@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 from product.models import Product
 from django.contrib.auth.models import User
-
+from utils.generateur import generate_code
 
 # Create your models here.
 ORDER_STATUS = (
@@ -14,8 +14,8 @@ ORDER_STATUS = (
 
 
 class Order(models.Model):
-    user= models.ForeignKey("User", verbose_name=_("Client"), on_delete=models.SET_NULL,null=True,blank=True)
-    code = models.CharField(_("Code"), max_length=50)
+    user= models.ForeignKey(User, verbose_name=_("Client"), on_delete=models.SET_NULL,null=True,blank=True)
+    code = models.CharField(_("Code"), max_length=50, default=generate_code)
     status = models.CharField(_("Status"), max_length=1, choices=ORDER_STATUS)
     order_time = models.DateTimeField(_("Heure de Commande"), auto_now=True)
     delivery_time = models.DateTimeField(_("Heure d'expédition"), auto_now=False, auto_now_add=False,null=True,blank=True)
@@ -30,8 +30,8 @@ class Order(models.Model):
     
 
 class OrderDetail(models.Model):
-    ordre= models.ForeignKey("Order", verbose_name=_("Commande"), on_delete=models.CASCADE)
-    product = models.ForeignKey("Product", verbose_name=_("Produit"), on_delete=models.SET_NULL,null=True, blank=True)
+    ordre= models.ForeignKey(Order, verbose_name=_("Commande"), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name=_("Produit"), on_delete=models.SET_NULL,null=True, blank=True)
     quantity = models.IntegerField(_("Quantite"))
     price =models.FloatField(_("Prix"))
      
