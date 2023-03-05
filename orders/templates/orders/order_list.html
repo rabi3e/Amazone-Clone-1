@@ -60,21 +60,21 @@
                                         <div class="col-lg-12">
                                             <div class="order-track">
                                                 <ul class="order-track-list">
-                                                    <li class="order-track-item active">
-                                                        <i class="icofont-check"></i>
-                                                        <span>order recieved</span>
+                                                    <li class="order-track-item {% if order.status == 'R' or order.status == 'T' or order.status == 'E' or order.status == 'L' %} active {% endif %}">
+                                                        <i class="icofont-{% if order.status == 'R' or order.status == 'T' or order.status == 'E' or order.status == 'L' %}check {%else%}close {% endif%}"></i>
+                                                        <span>Commande Reçue</span>
                                                     </li>
-                                                    <li class="order-track-item">
-                                                        <i class="icofont-close"></i>
-                                                        <span>order processed</span>
+                                                    <li class="order-track-item {% if order.status == 'T' or order.status == 'E' or order.status == 'L' %} active {% endif %}">
+                                                        <i class="icofont-{% if order.status == 'T' or order.status == 'E' or order.status == 'L' %}check {%else%}close {% endif%}"></i>
+                                                        <span>Commande Traitée</span>
                                                     </li>
-                                                    <li class="order-track-item">
-                                                        <i class="icofont-close"></i>
-                                                        <span>order shipped</span>
+                                                    <li class="order-track-item {% if order.status == 'E' or order.status == 'L' %} active {% endif %}">
+                                                        <i class="icofont-{% if order.status == 'E' or order.status == 'L' %}check {%else%}close {% endif%}"></i>
+                                                        <span>Commande Expédiée</span>
                                                     </li>
-                                                    <li class="order-track-item">
-                                                        <i class="icofont-close"></i>
-                                                        <span>order delivered</span>
+                                                    <li class="order-track-item {% if order.status == 'L' %} active {% endif %}">
+                                                        <i class="icofont-{% if order.status == 'L' %}check {%else%}close {% endif%}"></i>
+                                                        <span>Commande Livrée</span>
                                                     </li>
                                                 </ul>
                                             </div>
