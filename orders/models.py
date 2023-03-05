@@ -76,7 +76,7 @@ class OrderDetail(models.Model):
      
 
     def __str__(self):
-        return str(self.order)
+        return str(self.ordre)
 
     class Meta:
         verbose_name = 'OrderDetail'

@@ -1,3 +1,15 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Order
 
-# Create your views here.
+# Create Order List .
+
+class OrderListView(ListView):
+    model = Order
+    
+    def get_queryset(self):
+        data = Order.objects.filter(user= self.request.user)
+        return data
+    
+
+
