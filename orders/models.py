@@ -1,3 +1,4 @@
+from datetime import timezone
 from django.db import models
 from django.utils.translation import gettext as _
 from product.models import Product
@@ -56,7 +57,7 @@ class Order(models.Model):
     user= models.ForeignKey(User, verbose_name=_("Client"),related_name='user_order' ,on_delete=models.SET_NULL,null=True,blank=True)
     code = models.CharField(_("Code"), max_length=50, default=generate_code)
     status = models.CharField(_("Status"), max_length=1, choices=ORDER_STATUS)
-    order_time = models.DateTimeField(_("Heure de Commande"), auto_now=True)
+    order_time = models.DateTimeField(_("Heure de Commande"), default= timezone.now)
     delivery_time = models.DateTimeField(_("Heure d'expédition"), auto_now=False, auto_now_add=False,null=True,blank=True)
 
 
