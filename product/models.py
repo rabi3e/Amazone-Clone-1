@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 from django.utils.translation import gettext as _
 from django.utils.text import slugify
+from django.utils import timezone
 
 '''
 Product Models
@@ -85,7 +86,7 @@ class ProductReview(models.Model):
     product = models.ForeignKey(Product, verbose_name=_("Product"), related_name='productreview', on_delete=models.CASCADE)
     rate =models.IntegerField(_("Rate"))
     review = models.TextField(_("Review"), max_length=1000)
-    date = models.DateTimeField(_("Date"), auto_now=True)
+    date = models.DateTimeField(_("Date"), default=timezone.now )
     
     class Meta:
         verbose_name = 'Product Review'
