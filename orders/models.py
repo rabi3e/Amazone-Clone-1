@@ -45,6 +45,7 @@ class CartDetail(models.Model):
         verbose_name = 'CartDetail'
         verbose_name_plural = 'CartDetails' 
 # Create Order models
+
 ORDER_STATUS = (
     ('R', 'Reçue'),
     ('T', 'Traitée'),

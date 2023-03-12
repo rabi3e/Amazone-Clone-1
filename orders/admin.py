@@ -8,3 +8,4 @@ admin.site.register(OrderDetail)
 admin.site.register(CartDetail)
 admin.site.register(Cart)
 admin.site.register(Coupon)
+ 
