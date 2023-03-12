@@ -11,5 +11,9 @@ class OrderListView(ListView):
         data = Order.objects.filter(user= self.request.user)
         return data
     
+def checkout(request):
+    return render(request, 'orders/chekout.html', {})
+    
+    
 
 
