@@ -33,13 +33,13 @@ class Cart(models.Model):
 class CartDetail(models.Model):
     cart= models.ForeignKey(Cart, verbose_name=_("Commande"), related_name='cart_details' ,on_delete=models.CASCADE)
     product = models.ForeignKey(Product, verbose_name=_("Produit"), related_name='cart_product',on_delete=models.SET_NULL,null=True, blank=True)
-    quantity = models.IntegerField(_("Quantite"))
-    price =models.FloatField(_("Prix"))
-    total = models.FloatField(_("Total"))
+    quantity = models.IntegerField(_("Quantite"),default=0)
+    price =models.FloatField(_("Prix"),null=True,blank=True)
+    total = models.FloatField(_("Total"),null=True,blank=True)
      
 
     def __str__(self):
-        return str(self.order)
+        return str(self.cart)
 
     class Meta:
         verbose_name = 'CartDetail'
