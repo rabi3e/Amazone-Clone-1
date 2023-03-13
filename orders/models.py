@@ -23,11 +23,11 @@ class Cart(models.Model):
     
 
     def __str__(self):
-        return str(self.code)
+        return str(self.user)
         
     class Meta:
         verbose_name = 'Cart'
-        verbose_name_plural = 'Casts'
+        verbose_name_plural = 'Carts'
     
 
 class CartDetail(models.Model):
