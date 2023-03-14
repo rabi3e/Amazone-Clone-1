@@ -392,14 +392,21 @@
                                                
                                                 <span>{{object.prix}}<small>/</small></span>
                                             </h6>
-                                            <button class="product-add" title="Add to Cart">
-                                                <i class="fas fa-shopping-basket"></i>
-                                                <span>add</span>
-                                            </button>
-                                            <div class="product-action">
-                                                <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                                <button class="Sumit" title="Quantity"><i class="icofont-plus"></i></button>
-                                            </div>
+                                            <div class="details-add-group">
+                                                <button class="product-add" title="Add to Cart">
+                                                    <i class="fas fa-shopping-basket"></i>
+                                                    <span>add to cart</span>
+                                                </button>
+                                                <form action="{% url 'orders:add_to_cart' %}"  method="post" class="product-action">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" value="{{object.id}}" name="productid">
+                                                    <input title="Quantity Number" type="text" name="quantity" value="1">
+                                                    <button class="product-add" title="Add to Cart">
+                                                        <i class="fas fa-shopping-basket"></i>
+                                                        <span>add</span>
+                                                    </button>
+                                                </form>                                
+                                        </div>  
                                         </div>
                                     </div>
                                 </div>
