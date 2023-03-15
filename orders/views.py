@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from .models import Order, Cart, CartDetail
 from product.models import Product
+from settings.models import DeliveryFee
 
 
 # Create Order List .
@@ -40,7 +41,20 @@ def add_to_cart(request):
     
    
 def checkout(request):
-    return render(request, 'orders/chekout.html', {})
+    cart = Cart.objects.get(user=request.user , status ='E')
+    cartd = CartDetail.objects.filter(cart=cart)
+    delivery = DeliveryFee.objects.last()
+    total = cart.get_total()
+    tt = total + delivery.fees
+    
+    
+    return render(request, 'orders/checkout.html', {
+        'cart': cart,
+        'cart_detail': cartd,
+        'dilevery_fee' : delivery,
+        'total': total,
+        'tt': tt
+    })
     
     
 

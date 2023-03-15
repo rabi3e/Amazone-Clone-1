@@ -21,9 +21,19 @@ class Cart(models.Model):
     user= models.ForeignKey(User, verbose_name=_("Client"), related_name='user_cart' ,on_delete=models.SET_NULL,null=True,blank=True)
     status = models.CharField(_("Status"), max_length=1, choices=CART_STATUS)
     
+    
 
     def __str__(self):
         return str(self.user)
+    
+    def get_total(self):
+        total = 0.00
+        cartd= self.cart_details.all()
+        for pro in cartd :
+            total += pro.total
+            
+        return total
+    
         
     class Meta:
         verbose_name = 'Cart'
